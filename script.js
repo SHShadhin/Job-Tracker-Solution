@@ -22,7 +22,30 @@ const allFilterBtn = document.getElementById('all-filter-btn');
 const interviewFilterBtn = document.getElementById('interview-filter-btn');
 const rejectFilterBtn = document.getElementById('reject-filter-btn');
 const noJobsPart = document.querySelector('.no-job-part');
-console.log(noJobsPart);
+
+// Step 1 - Add
+const availableJob = document.getElementById('available-job'); //===============
+
+function updateAvailableJob() {
+  const totalJobs = allCardSection.children.length;
+
+  if (currentStatus === 'interview-filter-btn') {
+    if (interviewList.length > 0) {
+      availableJob.innerText = interviewList.length + ' of ' + totalJobs;
+    } else {
+      availableJob.innerText = '0';
+    }
+  } else if (currentStatus === 'reject-filter-btn') {
+    if (rejectList.length > 0) {
+      availableJob.innerText = rejectList.length + ' of ' + totalJobs;
+    } else {
+      availableJob.innerText = '0';
+    }
+  } else {
+    availableJob.innerText = totalJobs;
+  }
+}
+
 
 function toggleStyle(id) {
   // reset all button style
@@ -39,20 +62,21 @@ function toggleStyle(id) {
   selected.classList.add('bg-blue-500', 'text-white');
 
   currentStatus = id;
-
-  if (id === 'interview-filter-btn') {
-    allCardSection.classList.add('hidden');
-    filterSection.classList.remove('hidden');
-    renderInterview();
-  } else if (id === 'reject-filter-btn') {
-    allCardSection.classList.add('hidden');
-    filterSection.classList.remove('hidden');
-    renderReject();
-  } else {
-    allCardSection.classList.remove('hidden');
-    filterSection.classList.add('hidden');
-    noJobsPart.classList.add('hidden'); // important
+    if (id === 'interview-filter-btn') {
+      allCardSection.classList.add('hidden');
+      filterSection.classList.remove('hidden');
+      renderInterview();
+    } else if (id === 'reject-filter-btn') {
+      allCardSection.classList.add('hidden');
+      filterSection.classList.remove('hidden');
+      renderReject();
+    } else {
+      allCardSection.classList.remove('hidden');
+      filterSection.classList.add('hidden');
+      noJobsPart.classList.add('hidden');
   }
+  updateAvailableJob();
+  
 }
 
 // step 3 delegation
@@ -99,9 +123,7 @@ mainContainer.addEventListener('click', function (event) {
     if (!interviewExist) {
       interviewList.push(cardInfo);
     }
-
     // step 3 finish
-
     rejectList = rejectList.filter(
       item => item.companyName != cardInfo.companyName,
     );
@@ -110,7 +132,9 @@ mainContainer.addEventListener('click', function (event) {
       renderReject();
     }
 
-    calculateCount(); //calculate thriving list
+    calculateCount();
+    updateAvailableJob();
+    
   } else if (event.target.classList.contains('reject-btn')) {
     const parentNode = event.target.parentNode.parentNode;
 
@@ -120,8 +144,6 @@ mainContainer.addEventListener('click', function (event) {
     const type = parentNode.querySelector('.type').innerText;
 
     const stats = parentNode.querySelector('.stats');
-    // stats.classList.remove('bg-green-200', 'hidden');
-    // stats.classList.add('bg-red-400');
     stats.classList.remove(
       'bg-green-200',
       'bg-green-400',
@@ -160,7 +182,8 @@ mainContainer.addEventListener('click', function (event) {
     if (currentStatus == 'interview-filter-btn') {
       renderInterview();
     }
-    calculateCount(); 
+    calculateCount();
+    updateAvailableJob();
   }
 });
 

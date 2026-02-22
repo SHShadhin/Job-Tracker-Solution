@@ -216,7 +216,8 @@ function renderInterview() {
     console.log(interview);
 
     let div = document.createElement('div');
-    div.className = 'flex bg-white justify-between p-6 mb-6 rounded-xl';
+    div.className =
+      'flex bg-white justify-between p-6 mb-6 rounded-xl border-5 border-t-0 border-r-0 border-b-0 border-l-green-400';
     div.innerHTML = `
       <div class="space-y-6">
           <!-- part 1 -->
@@ -266,7 +267,8 @@ function renderReject() {
     console.log(reject);
 
     let div = document.createElement('div');
-    div.className = 'flex bg-white justify-between p-6 mb-6 rounded-xl';
+    div.className =
+      'flex bg-white justify-between p-6 mb-6 rounded-xl border-5 border-t-0 border-r-0 border-b-0 border-l-red-400';
     div.innerHTML = `
       <div class="space-y-6">
           <!-- part 1 -->

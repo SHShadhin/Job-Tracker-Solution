@@ -1,4 +1,4 @@
-<html data-theme="light" lang="en">
+<!-- <html data-theme="light" lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -7,24 +7,24 @@
   <link rel="shortcut icon" href="assets/logo.png" type="image/x-icon">
 
   <!-- Tailwind + daisy ui cdn -->
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-  <!-- fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+<!-- fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
 
-  <!-- icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+  integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <style>
-    * {
-      font-family: "Outfit", sans-serif;
-    }
-  </style>
+<style>
+  * {
+    font-family: "Outfit", sans-serif;
+  }
+</style>
 </head>
 
 <body class="min-h-screen bg-base-300 pb-10">
@@ -39,12 +39,12 @@
 
       <div class="bg-white p-5 rounded-lg">
         <p>Interview</p>
-        <p id="interviewCount" class="text-[#10B981] text-2xl">0</p>
+        <p id="interview-Count" class="text-[#10B981] text-2xl">0</p>
       </div>
 
       <div class="bg-white p-5 rounded-lg">
         <p>Reject</p>
-        <p id="rejectCount" class="text-[#EF4444] text-2xl">0</p>
+        <p id="reject-Count" class="text-[#EF4444] text-2xl">0</p>
       </div>
     </div>
   </header>
@@ -52,16 +52,39 @@
   <!-- header end -->
 
   <main class="w-[80%] mx-auto pt-2 ">
+    <!-- main jobs part -->
     <div class="available flex justify-between">
       <h2 class="text-xl">Available Jobs</h2>
       <p class="text-xl"><span class="">8</span>Jobs</p>
     </div>
 
     <div class="btns mt-10 mb-6 flex gap-3">
-      <button class="bg-blue-500 text-white px-11 py-2 rounded-md" id="all-btn">All</button>
-      <button class="bg-gray-300 px-5 py-2 rounded-md" id="interview-btn">Interview</button>
-      <button class="bg-gray-300 px-8 py-2 rounded-md" id="reject-btn">Reject</button>
+      <button onclick="toggleStyle('all-filter-btn')" class="bg-blue-500 text-white px-11 py-2 rounded-md"
+        id="all-filter-btn">All</button>
+      <button onclick="toggleStyle('interview-filter-btn')" class="bg-gray-300 px-5 py-2 rounded-md"
+        id="interview-filter-btn">Interview</button>
+      <button onclick="toggleStyle('reject-filter-btn')" class="bg-gray-300 px-8 py-2 rounded-md"
+        id="reject-filter-btn">Reject</button>
     </div>
+
+    <!-- no jobs part start -->
+    <div class="no-job-part hidden">
+      <div class="no-jobs-card bg-white flex flex-col h-[400px] justify-center items-center space-y-5 rounded-lg">
+        <div>
+          <img src="./image/file.png" alt="">
+        </div>
+        <h2 class="text-3xl">No jobs available</h2>
+        <p class="text-lg text-gray-400">Check back soon for new job opportunities</p>
+      </div>
+    </div>
+
+    <!-- no jobs part end -->
+
+    <!-- filtered card start-->
+    <section id="filtered-section" class="hidden">
+
+    </section>
+    <!-- filtered card end -->
 
     <section id="all-cards">
       <!-- card 1 -->
@@ -78,22 +101,23 @@
             </div>
 
             <div>
-              <button class="stats bg-green-200 px-5 py-2 rounded-md"> Not Applied</button>
+              <button class="stats bg-green-200 px-5 py-2 rounded-md hidden"> Not Applied</button>
             </div>
 
-            <p class="description my-2">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
+            <p class="description my-2">Build cross-platform mobile applications using React Native. Work on products
+              used by millions of users worldwide.</p>
 
             <div class="flex gap-5 mt-4">
-              <button class="btn btn-outline btn-success">Interview</button>
-              <button class="btn btn-outline btn-error px-7">Reject</button>
+              <button class="btn btn-outline btn-success interview-btn">Interview</button>
+              <button class="btn btn-outline btn-error px-7 reject-btn">Reject</button>
             </div>
           </div>
         </div>
         <!-- delete button -->
         <div>
-            <button class="btn btn-circle deleted">
-              <i class="fa-regular fa-trash-can"></i>
-            </button>
+          <button class="btn btn-circle deleted">
+            <i class="fa-regular fa-trash-can"></i>
+          </button>
         </div>
       </div>
 
@@ -111,22 +135,23 @@
             </div>
 
             <div>
-              <button class="stats bg-green-200 px-5 py-2 rounded-md"> Not Applied</button>
+              <button class="stats bg-green-200 px-5 py-2 rounded-md hidden"> Not Applied</button>
             </div>
 
-            <p class="description my-2">Create stunning web experiences for high-profile clients. Must have portfolio and experience with modern web design trends.</p>
+            <p class="description my-2">Create stunning web experiences for high-profile clients. Must have portfolio
+              and experience with modern web design trends.</p>
 
             <div class="flex gap-5 mt-4">
-              <button class="btn btn-outline btn-success">Interview</button>
-              <button class="btn btn-outline btn-error px-7">Reject</button>
+              <button class="btn btn-outline btn-success interview-btn">Interview</button>
+              <button class="btn btn-outline btn-error px-7 reject-btn">Reject</button>
             </div>
           </div>
         </div>
         <!-- delete button -->
         <div>
-            <button class="btn btn-circle deleted">
-              <i class="fa-regular fa-trash-can"></i>
-            </button>
+          <button class="btn btn-circle deleted">
+            <i class="fa-regular fa-trash-can"></i>
+          </button>
         </div>
       </div>
 
@@ -144,22 +169,23 @@
             </div>
 
             <div>
-              <button class="stats bg-green-200 px-5 py-2 rounded-md"> Not Applied</button>
+              <button class="stats bg-green-200 px-5 py-2 rounded-md hidden"> Not Applied</button>
             </div>
 
-            <p class="description my-2">Transform complex data into compelling visualizations. Required skills: D3.js, React, and strong analytical thinking.</p>
+            <p class="description my-2">Transform complex data into compelling visualizations. Required skills: D3.js,
+              React, and strong analytical thinking.</p>
 
             <div class="flex gap-5 mt-4">
-              <button class="btn btn-outline btn-success">Interview</button>
-              <button class="btn btn-outline btn-error px-7">Reject</button>
+              <button class="btn btn-outline btn-success interview-btn">Interview</button>
+              <button class="btn btn-outline btn-error px-7 reject-btn">Reject</button>
             </div>
           </div>
         </div>
         <!-- delete button -->
         <div>
-            <button class="btn btn-circle deleted">
-              <i class="fa-regular fa-trash-can"></i>
-            </button>
+          <button class="btn btn-circle deleted">
+            <i class="fa-regular fa-trash-can"></i>
+          </button>
         </div>
       </div>
 
@@ -177,22 +203,23 @@
             </div>
 
             <div>
-              <button class="stats bg-green-200 px-5 py-2 rounded-md"> Not Applied</button>
+              <button class="stats bg-green-200 px-5 py-2 rounded-md hidden"> Not Applied</button>
             </div>
 
-            <p class="description my-2">Design and maintain scalable backend systems using Python and AWS. Work with modern DevOps practices and cloud infrastructure.</p>
+            <p class="description my-2">Design and maintain scalable backend systems using Python and AWS. Work with
+              modern DevOps practices and cloud infrastructure.</p>
 
             <div class="flex gap-5 mt-4">
-              <button class="btn btn-outline btn-success">Interview</button>
-              <button class="btn btn-outline btn-error px-7">Reject</button>
+              <button class="btn btn-outline btn-success interview-btn">Interview</button>
+              <button class="btn btn-outline btn-error px-7 reject-btn">Reject</button>
             </div>
           </div>
         </div>
         <!-- delete button -->
         <div>
-            <button class="btn btn-circle deleted">
-              <i class="fa-regular fa-trash-can"></i>
-            </button>
+          <button class="btn btn-circle deleted">
+            <i class="fa-regular fa-trash-can"></i>
+          </button>
         </div>
       </div>
 
@@ -210,22 +237,23 @@
             </div>
 
             <div>
-              <button class="stats bg-green-200 px-5 py-2 rounded-md"> Not Applied</button>
+              <button class="stats bg-green-200 px-5 py-2 rounded-md hidden"> Not Applied</button>
             </div>
 
-            <p class="description my-2">Create beautiful and functional user interfaces for our suite of products. Strong design skills and frontend development expertise required.</p>
+            <p class="description my-2">Create beautiful and functional user interfaces for our suite of products.
+              Strong design skills and frontend development expertise required.</p>
 
             <div class="flex gap-5 mt-4">
-              <button class="btn btn-outline btn-success">Interview</button>
-              <button class="btn btn-outline btn-error px-7">Reject</button>
+              <button class="btn btn-outline btn-success interview-btn">Interview</button>
+              <button class="btn btn-outline btn-error px-7 reject-btn">Reject</button>
             </div>
           </div>
         </div>
         <!-- delete button -->
         <div>
-            <button class="btn btn-circle deleted">
-              <i class="fa-regular fa-trash-can"></i>
-            </button>
+          <button class="btn btn-circle deleted">
+            <i class="fa-regular fa-trash-can"></i>
+          </button>
         </div>
       </div>
 
@@ -243,22 +271,23 @@
             </div>
 
             <div>
-              <button class="stats bg-green-200 px-5 py-2 rounded-md"> Not Applied</button>
+              <button class="stats bg-green-200 px-5 py-2 rounded-md hidden"> Not Applied</button>
             </div>
 
-            <p class="description my-2">Build enterprise applications with JavaScript and modern frameworks. We offer competitive compensation, health insurance, and professional development opportunities.</p>
+            <p class="description my-2">Build enterprise applications with JavaScript and modern frameworks. We offer
+              competitive compensation, health insurance, and professional development opportunities.</p>
 
             <div class="flex gap-5 mt-4">
-              <button class="btn btn-outline btn-success">Interview</button>
-              <button class="btn btn-outline btn-error px-7">Reject</button>
+              <button class="btn btn-outline btn-success interview-btn">Interview</button>
+              <button class="btn btn-outline btn-error px-7 reject-btn">Reject</button>
             </div>
           </div>
         </div>
         <!-- delete button -->
         <div>
-            <button class="btn btn-circle deleted">
-              <i class="fa-regular fa-trash-can"></i>
-            </button>
+          <button class="btn btn-circle deleted">
+            <i class="fa-regular fa-trash-can"></i>
+          </button>
         </div>
       </div>
 
@@ -276,22 +305,23 @@
             </div>
 
             <div>
-              <button class="stats bg-green-200 px-5 py-2 rounded-md"> Not Applied</button>
+              <button class="stats bg-green-200 px-5 py-2 rounded-md hidden"> Not Applied</button>
             </div>
 
-            <p class="description my-2">Join our fast-growing startup and work on our core platform. Experience with Node.js and React required. Great benefits and equity package included.</p>
+            <p class="description my-2">Join our fast-growing startup and work on our core platform. Experience with
+              Node.js and React required. Great benefits and equity package included.</p>
 
             <div class="flex gap-5 mt-4">
-              <button class="btn btn-outline btn-success">Interview</button>
-              <button class="btn btn-outline btn-error px-7">Reject</button>
+              <button class="btn btn-outline btn-success interview-btn">Interview</button>
+              <button class="btn btn-outline btn-error px-7 reject-btn">Reject</button>
             </div>
           </div>
         </div>
         <!-- delete button -->
         <div>
-            <button class="btn btn-circle deleted">
-              <i class="fa-regular fa-trash-can"></i>
-            </button>
+          <button class="btn btn-circle deleted">
+            <i class="fa-regular fa-trash-can"></i>
+          </button>
         </div>
       </div>
 
@@ -309,22 +339,23 @@
             </div>
 
             <div>
-              <button class="stats bg-green-200 px-5 py-2 rounded-md"> Not Applied</button>
+              <button class="stats bg-green-200 px-5 py-2 rounded-md hidden"> Not Applied</button>
             </div>
 
-            <p class="description my-2">We are looking for an experienced Frontend Developer to build scalable web applications using React and TypeScript. You will work with a talented team on cutting-edge projects.</p>
+            <p class="description my-2">We are looking for an experienced Frontend Developer to build scalable web
+              applications using React and TypeScript. You will work with a talented team on cutting-edge projects.</p>
 
             <div class="flex gap-5 mt-4">
-              <button class="btn btn-outline btn-success">Interview</button>
-              <button class="btn btn-outline btn-error px-7">Reject</button>
+              <button class="btn btn-outline btn-success interview-btn">Interview</button>
+              <button class="btn btn-outline btn-error px-7 reject-btn">Reject</button>
             </div>
           </div>
         </div>
         <!-- delete button -->
         <div>
-            <button class="btn btn-circle deleted">
-              <i class="fa-regular fa-trash-can"></i>
-            </button>
+          <button class="btn btn-circle deleted">
+            <i class="fa-regular fa-trash-can"></i>
+          </button>
         </div>
       </div>
 

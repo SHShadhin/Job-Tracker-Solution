@@ -24,7 +24,7 @@ const rejectFilterBtn = document.getElementById('reject-filter-btn');
 const noJobsPart = document.querySelector('.no-job-part');
 
 // Step 1 - Add
-const availableJob = document.getElementById('available-job'); //===============
+const availableJob = document.getElementById('available-job');
 
 function updateAvailableJob() {
   const totalJobs = allCardSection.children.length;
@@ -46,7 +46,6 @@ function updateAvailableJob() {
   }
 }
 
-
 function toggleStyle(id) {
   // reset all button style
   allFilterBtn.classList.add('bg-gray-300', 'text-black');
@@ -62,21 +61,20 @@ function toggleStyle(id) {
   selected.classList.add('bg-blue-500', 'text-white');
 
   currentStatus = id;
-    if (id === 'interview-filter-btn') {
-      allCardSection.classList.add('hidden');
-      filterSection.classList.remove('hidden');
-      renderInterview();
-    } else if (id === 'reject-filter-btn') {
-      allCardSection.classList.add('hidden');
-      filterSection.classList.remove('hidden');
-      renderReject();
-    } else {
-      allCardSection.classList.remove('hidden');
-      filterSection.classList.add('hidden');
-      noJobsPart.classList.add('hidden');
+  if (id === 'interview-filter-btn') {
+    allCardSection.classList.add('hidden');
+    filterSection.classList.remove('hidden');
+    renderInterview();
+  } else if (id === 'reject-filter-btn') {
+    allCardSection.classList.add('hidden');
+    filterSection.classList.remove('hidden');
+    renderReject();
+  } else {
+    allCardSection.classList.remove('hidden');
+    filterSection.classList.add('hidden');
+    noJobsPart.classList.add('hidden');
   }
   updateAvailableJob();
-  
 }
 
 // step 3 delegation
@@ -134,7 +132,6 @@ mainContainer.addEventListener('click', function (event) {
 
     calculateCount();
     updateAvailableJob();
-    
   } else if (event.target.classList.contains('reject-btn')) {
     const parentNode = event.target.parentNode.parentNode;
 
@@ -184,6 +181,23 @@ mainContainer.addEventListener('click', function (event) {
     }
     calculateCount();
     updateAvailableJob();
+  } else if (event.target.closest('.deleted')) {
+    let deleteBtn = event.target.closest('.deleted');
+    let cardDiv = deleteBtn.closest('.flex.bg-white');
+    if (cardDiv) {
+      const companyName = cardDiv.querySelector('.companyName').innerText;
+      interviewList = interviewList.filter(
+        item => item.companyName !== companyName,
+      );
+      rejectList = rejectList.filter(item => item.companyName !== companyName);
+
+      // DOM থেকে remove করা
+      cardDiv.remove();
+
+      // count এবং available jobs update করা
+      calculateCount();
+      updateAvailableJob();
+    }
   }
 });
 

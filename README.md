@@ -1,52 +1,40 @@
-## 1. What is the difference between getElementById, getElementsByClassName, and querySelector / querySelectorAll?
+#  Smart Job Application Tracker
+## 📖 Description
+Job Tracker Solution is a specialized dashboard application designed for job seekers to organize, track, and manage their career opportunities in one centralized location. Built with a focus on clean UI and efficient data management, this platform transforms the chaotic process of job hunting into a structured workflow.
 
-A. getElementById() :- getElementById() selects one specific element by id.
-i. We use this when we want to get one specific element which has an id.
-ii. If the id is not found or id name is wrong it returns null.
+The application features a secure login system and a comprehensive overview of job applications. Users can monitor their progress through a dynamic counter system that tracks "Total," "Interview," and "Rejected" statuses. Each job is presented as a detailed card, featuring key information such as company name, role, salary range, and job type (Remote/On-site).
 
-B. getElementsByClassName() :- getElementsByClassName() selects multiple elements with same class.
-i. We use this when many elements have the same class name.
-ii. It returns many elements.
-iii. It gives us a HTML Collection list.
+Key technical highlights include a tab-based filtering system that allows users to toggle between application statuses instantly, and a search functionality to locate specific companies or roles. The project is fully responsive, ensuring a seamless experience across mobile and desktop devices, and follows modern web development standards using Vanilla JavaScript and Tailwind CSS.
+## ⚙️ Technologies Used  
+- Tailwind CSS  
+- DaisyUI  
+- Vanilla Javascript 
 
-C. querySelector() :- It uses CSS selectors to find elements.
-i. When we use it and want to get id inside the querySelector we have to give #(hash) and then id name.Its almost like as use css styles. for example - querySelector('#id')
-ii. When we use it and want to get clss inside the querySelector we have to give .(dot) and then clas name.Its almost like as use css styles. for example - querySelector('.class').
-iii. We can also get elemens by Tagname here.
-iv. But the important thing is it only returns the first matching element.
+## ✨ Features
+### Comprehensive Filtering & Search:
+Users can efficiently manage large datasets using the integrated tab system and a real-time search bar. The application allows for seamless toggling between categories and the ability to find specific records instantly by title or description, ensuring high usability and quick navigation.
+### Dynamic Status Management & Visual Indicators:
+The dashboard provides real-time tracking of entries (such as issues or job applications). It features a dedicated counter system for different categories (e.g., All, Open, Closed or Interview, Reject) and uses color-coded visual cues, such as specific top borders on cards, to instantly distinguish between different statuses.
+### Button Toggle
+- Default State: By default, the "All" button is active, displaying a complete list of all available job applications.
 
-D. querySelectorAll() :- This also uses CSS selectors, but it returns all matching elements.
-i. It returns a nodeList 
-ii. We can use forEach loop in it.
+- Interview Filtering: Upon clicking the "Interview" button, the UI toggles to the Interview tab, filtering and displaying only the jobs that have been shortlisted for interviews.
 
-## 2. How do you create and insert a new element into the DOM?
-Ans: To create and insert a new element into the DOM, we follow three simple steps.
-A. First, we create a new element using document.createElement().
-i. let newPara = document.createElement("p"); ==> This creates a new paragraph element.
+- Rejection Tracking: Similarly, clicking the "Rejected" button updates the view to show only the list of applications that have been marked as rejected.
 
-B. Second, we add some text or content inside the element.
-i. newPara.innerText = "This is a new paragraph."; ==> Now the paragraph has text inside it.
+Interactive Toggling: Each button click provides immediate visual feedback by highlighting the active tab while simultaneously updating the data display.
 
-C. Third, we insert the element into the DOM. 
-i. Finally we insert it using appendChild() or append().
-ii. let container = document.getElementById("container");
-iii. container.appendChild(newPara);
+## 💻 How to Run Locally
 
-## 3. What is Event Bubbling? And how does it work?
-Ans: Event Bubbling means when an event happens on a child element, it first works on that element, then moves up step by step to its parent elements. For example, if we click on an element, the event happens on that element first, then goes to its parent, then the parent's parent, and so on, up to the html element. This means both the element you clicked and its parents can respond to the same event.
+### ১. প্রথমে আপনার টার্মিনাল বা কমান্ড প্রম্পটে নিচের কমান্ডটি লিখুন:
+git clone https://github.com/SHShadhin/Job-Tracker-Solution.git
 
-## 4. What is Event Delegation in JavaScript? Why is it useful?
-Ans: Event Delegation is a technique where we attach a single event listener to a parent element instead of adding separate listeners to multiple child elements. The parent listens for events on its children, and we can use the event object to figure out which child triggered the event.
+### ২. প্রজেক্ট ডিরেক্টরিতে প্রবেশ করুন:
+cd Job-Tracker-Solution
+### ৩. ব্রাউজারে ওপেন করুন:
+- আপনার পছন্দের ব্রাউজারে সরাসরি index.html ফাইলটি টেনে এনে ছেড়ে দিন (Drag & Drop)।
+- অথবা, আপনি যদি VS Code ব্যবহার করেন, তাহলে Live Server এক্সটেনশনটি ব্যবহার করে প্রজেক্টটি লাইভ রান করতে পারেন।
 
-Why it's useful:
+## 🚀 Live Link  
 
-We write only one event listener instead of many.
-It works even if new child elements are added dynamically.
-It improves performance and makes code simpler.
-
-## 5. What is the difference between preventDefault() and stopPropagation() methods?
-preventDefault():- 
-preventDefault() is used when we want to stop the browser’s default behavior.Example: a link won't open, or a form won't submit when clicked.
-
-stopPropagation():-
-Stops an event from moving up bubbling or down capturing the DOM. Example: clicking a button inside a div triggers only the button's event, not the div's.
+👉 https://job-tracker-solution.netlify.app/

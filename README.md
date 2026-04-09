@@ -9,6 +9,9 @@ Key technical highlights include a tab-based filtering system that allows users 
 - Tailwind CSS  
 - DaisyUI  
 - Vanilla Javascript 
+## 📸 Preview
+
+<img src="https://i.ibb.co.com/hN8mFw0/screencapture-job-tracker-solution-netlify-app-2026-04-09-19-52-27.png">
 
 ## ✨ Features
 ### Comprehensive Filtering & Search:
